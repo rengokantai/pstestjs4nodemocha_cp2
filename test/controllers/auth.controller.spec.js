@@ -22,7 +22,7 @@ describe('AuthController', function () {
         it('should allow get if authorized');
     })
     describe('isAuthorizedAsync', function () {
-
+        this.timeout(800)
         it('Should return false if not authorized', function (done) {
             authController.isAuthorizedAsync('admin',
                 function (isAuth) {
