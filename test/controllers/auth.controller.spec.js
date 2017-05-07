@@ -4,6 +4,10 @@ var authController = require('../../controllers/auth.controller');
 
 
 describe('AuthController', function () {
+    beforeEach(function settingUpRoles() {
+        console.log('running before each');
+        authController.setRoles(['user']);
+    });
 
     describe('isAuthorized', function () {
 
@@ -17,6 +21,16 @@ describe('AuthController', function () {
         it('should not allow a get if not authorized');
         it('should allow get if authorized');
     })
+    describe('isAuthorizedAsync', function () {
 
+        it('Should return false if not authorized', function (done) {
+            authController.isAuthorizedAsync('admin',
+                function (isAuth) {
+                    assert.equal(false, isAuth);
+                    done();
+                });
+
+        })
+    })
 
 });
